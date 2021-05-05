@@ -25,80 +25,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<style>
-  input[type=checkbox]:checked + .strikethrough{
-  text-decoration: line-through;
-}
-</style>
-
-
 <body>
-
-<div class="card text-center" style="padding:15px;">
-  <h4>TO-DO LIST</h4>
-</div><br><br> 
-
 <div class="container">
-  <?php
-    if (isset($_GET['msg1']) == "insert") {
-      echo "<div class='alert alert-success alert-dismissible'>
-              <button type='button' class='close' data-dismiss='alert'>&times;</button>
-              Your Registration added successfully
-            </div>";
-      } 
-    if (isset($_GET['msg2']) == "update") {
-      echo "<div class='alert alert-success alert-dismissible'>
-              <button type='button' class='close' data-dismiss='alert'>&times;</button>
-              Your Registration updated successfully
-            </div>";
-    }
-    if (isset($_GET['msg3']) == "delete") {
-      echo "<div class='alert alert-success alert-dismissible'>
-              <button type='button' class='close' data-dismiss='alert'>&times;</button>
-              Record deleted successfully
-            </div>";
-    }
-  ?>
-  <h2>View Deleted Records
-    <a href="index.php" class="btn btn-primary" style="float:right;">Back</a>
-  </h2>
-  <table class="table table-hover">
-    <thead>
+  <div class="container w-50 mb-5">
+    <h1 class="text-center glass-container text-white p-2">View Deleted Records</h1>
+  </div>
+    <button class="details float-right mb-4 mr-5">
+      <a href="index.php" class="text-white p-3">Back</a>
+    </button>
+  </div>
+<br>
+<br>
+<div class="container addForm align-items-center w-75">
+  <table class="table table-striped table-borderless m-4">
+    <thead class="h3">
       <tr>
-        
-        <th>No.</th>
         <th>Task</th>
         <th>Description</th>
         <th>Created_At</th>
-        <th>Deleted_At</th>
-
+        <th class="">Action</th>
       </tr>
     </thead>
-
     <tbody>
         <?php 
           $newTask = $taskObj->displayTrashData(); 
           foreach ($newTask as $task) {
         ?>
-        <tr>
-          <td><input type="checkbox" value="1"/></td>
+        <tr class="text-white">
           <td><?php echo $task['task'] ?></td>
           <td><?php echo $task['description'] ?></td>
           <td><?php echo $task['created_at'] ?></td>
-          <td><?php echo $task['deleted_at'] ?></td>
-          <td>
-            <a href="trash.php?restore_Id=<?php echo $task['trash_id'] ?>" style="color:green">Restore</a>&nbsp
-            <a href="trash.php?deletePermId=<?php echo $task['trash_id'] ?>" style="color:red" onclick="confirm('Are you sure want to delete this record')">
-              <i class="fa fa-trash" aria-hidden="true"></i>
+          <td class="text-left">
+            <a href="trash.php?restore_Id=<?php echo $task['trash_id'] ?>"><i class="fa fa-trash-restore text-warning" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Restore Task"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="trash.php?deletePermId=<?php echo $task['trash_id'] ?>">
+              <i class="fa fa-trash text-danger" aria-hidden="true" data-toggle="tooltip" data-placement="left" title="Delete Task"></i>
             </a>
           </td>
         </tr>
-      <?php } ?>
+      <?php }?>
     </tbody>
   </table>
 </div>
+<div class="circle1"></div>
+  <div class="circle2"></div>
+  <div class="circle3"></div>
+  <div class="circle4"></div>
+  <div class="circle5"></div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 

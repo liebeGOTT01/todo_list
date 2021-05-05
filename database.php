@@ -87,19 +87,9 @@
             
 			$query = mysqli_query($this->con, "SELECT * FROM `todo_list` WHERE `id` = '$id'") or die(mysqli_error());
 			$fetch = mysqli_fetch_array($query);
-			mysqli_query($this->con , "INSERT INTO `trash` VALUES( '','$fetch[task]','$fetch[description]', '$fetch[created_at]','')") or die(mysqli_error());
+			mysqli_query($this->con , "INSERT INTO `trash` VALUES( '','$fetch[task]','$fetch[description]', '$fetch[created_at]')") or die(mysqli_error());
 			mysqli_query($this->con, "DELETE FROM `todo_list` WHERE `id` = '$id'") or die(mysqli_error());
 			header('location:index.php');
-
-
-			// mysqli_query($this->con, "INSERT INTO ``trash` VALUES ");
-		    // $query = "DELETE FROM todo_list WHERE id = '$id'";
-		    // $sql = $this->con->query($query);
-			// if ($sql==true) {
-			// 	header("Location:index.php?msg3=delete");
-			// }else{
-			// 	echo "Record does not delete try again";
-			// }
 		}
 
 		// Fetch trash records for show listing
@@ -118,9 +108,7 @@
 		}
 
 		public function restoreDeletedRecord($id){
-
 			echo $id;
-            
 			$query = mysqli_query($this->con, "SELECT * FROM `trash` WHERE `trash_id` = '$id'") or die(mysqli_error());
 			$fetch = mysqli_fetch_array($query);
 			mysqli_query($this->con, "INSERT INTO `todo_list` VALUES('', '$fetch[task]',  '$fetch[description]', '$fetch[created_at]')") or die(mysqli_error());
@@ -131,9 +119,7 @@
 		}
 
 		public function deletePermanentRecord($trash_id){
-            
 			$query = mysqli_query($this->con, "DELETE FROM `trash` WHERE `trash_id` = '$trash_id'") or die(mysqli_error());
-			
 		}
 
 	}

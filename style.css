@@ -1,0 +1,171 @@
+body{
+    margin-top:5%;
+    background: radial-gradient(circle, rgba(64,129,249,1) 0%, rgba(70,205,252,1) 100%);
+  }
+
+  input[type=checkbox] {
+    transform: scale(2.5);
+  }
+  
+  .header{
+    gap: 20px;
+      border-radius: 31px;
+      backdrop-filter: blur(20px);
+      background-color: rgba(29,0,250, 0.45);
+      box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+      border: 4px rgba(255,255,255,0.4) solid;
+      border-bottom: 4px rgba(40,40,40,0.35) solid;
+      border-right: 4px rgba(40,40,40,0.35) solid;
+    position: relative;
+    z-index:5;
+  }
+  
+  .glass-container{
+    gap: 20px;
+    border-radius: 42px;
+    backdrop-filter: blur(20px);
+    background-color: rgba(22,71,218, 0.323);
+    box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+    border: 1px rgba(255,255,255,0.4) solid;
+    border-bottom: 1px rgba(40,40,40,0.35) solid;
+    border-right: 1px rgba(40,40,40,0.35) solid;
+    position: relative;
+    z-index:5;
+  }
+  
+  .details{
+      gap: 5px;
+      border-radius: 42px;
+      backdrop-filter: blur(13px);
+      background-color: rgba(24,11,203, 0.5);
+      box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+      border: 0px rgba(255,255,255,0.4) solid;
+      border-bottom: 0px rgba(40,40,40,0.35) solid;
+      border-right: 0px rgba(40,40,40,0.35) solid;
+  }
+  
+  .trash{
+      gap: 5px;
+      border-radius: 42px;
+      backdrop-filter: blur(1px);
+      background-color: rgba(24,11,203, 0.5);
+      box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+      border: 0px rgba(255,255,255,0.4) solid;
+      border-bottom: 0px rgba(40,40,40,0.35) solid;
+      border-right: 0px rgba(40,40,40,0.35) solid;
+  }
+  
+  .addForm{
+      border-radius: 23px;
+      backdrop-filter: blur(13px);
+      background-color: rgba(24,11,203, 0.5);
+      box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px;
+      border: 0px rgba(255,255,255,0.4) solid;
+      border-bottom: 0px rgba(40,40,40,0.35) solid;
+      border-right: 0px rgba(40,40,40,0.35) solid;
+      position: relative;
+      z-index:5;
+  }
+  .circle1,
+  .circle2,
+  .circle3,
+  .circle4,
+  .circle5 {
+    background: #b51d12;
+    background: linear-gradient(
+      to right bottom,
+      rgba(250, 255, 255, 0.8),
+      rgba(0, 50, 100, 0.3)
+    );
+  }
+  
+  .circle1 {
+    top: 5%;
+    right: 15%;
+    height: 20rem;
+    width: 20rem;
+    position: fixed;
+    z-index:1;
+    border-radius: 50%;
+  
+  }
+  .circle2 {
+    bottom: 5%;
+    left: 10%;
+    height: 20rem;
+    width: 20rem;
+    position: fixed;
+    z-index:1;
+    border-radius: 50%;
+  
+  }
+  .circle3 {
+    bottom: 2%;
+    right: 0%;
+    height: 28rem;
+    width: 20rem;
+    position: fixed;
+    z-index:1;
+    border-radius: 5%;
+  }
+
+  .circle4 {
+    top: 5%;
+    left: 0%;
+    height: 5rem;
+    width: 25rem;
+    position: fixed;
+    z-index:1;
+    border-radius: 2%;
+  }
+  .circle5 {
+    top: 25%;
+    left: 20%;
+    height: 15rem;
+    width: 25rem;
+    position: fixed;
+    z-index:1;
+    border-radius: 2%;
+  }
+  
+  button {
+    border-radius: 4px;
+    background-color: #5ca1e1;
+    border: none;
+    color: #fff;
+    text-align: center;
+    padding: 2px 15px 2px 15px;
+    font-size: 25px;
+    width: auto;
+    transition: all 0.5s;
+    cursor: pointer;
+    box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
+    position:absolute;
+    z-index: 8;
+  }
+  
+  button{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  button:after {
+    content: '»';
+    position: absolute;
+    opacity: 0;  
+    top: 1px;
+    right: -10px;
+    transition: 0.5s;
+  }
+  
+  button:hover{
+    padding-right: 30px;
+    padding-left:8px;
+  }
+  
+  button:hover:after {
+    opacity: 1;
+    right: 10px;
+  }
