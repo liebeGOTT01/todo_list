@@ -15,6 +15,17 @@
       $deleteId = $_GET['deleteId'];
       $taskObj->deleteRecord($deleteId);
   }
+
+    // Edit task record
+    if(isset($_POST['editId']) && !empty($_POST['editId'])) {
+      $editId = $_POST['editId'];
+      $newTask = $taskObj->displayRecordById($editId);
+    }
+  
+    // Update Record in task table
+    if(isset($_POST['update'])) {
+      $taskObj->updateRecord($_POST);
+    }  
      
 ?> 
 <!DOCTYPE html>
@@ -28,19 +39,12 @@
 </head>
 
 <style>
-  input[type=checkbox]:checked + .strikethrough{
-  text-decoration: line-through;
-}
+
 </style>
 
 
 <body>
-
-<div class="card text-center" style="padding:15px;">
-  <h4>TO-DO LIST</h4>
-</div>
-<br><br> 
-
+<br>
 <div class="container">
   <div class="row">
 
@@ -52,7 +56,6 @@
           <label for="$post">Task:</label>
           <input type="text" class="form-control" name="task" placeholder="Enter task" required="">
         </div>
-
         <div class="form-group">
           <label for="description">Description:</label>
           <input type="text" class="form-control" name="description" placeholder="Enter description" required="">
@@ -64,62 +67,49 @@
     </div>
 
     <div class="container col-md-7">
-      <?php
-        if (isset($_GET['msg1']) == "insert") {
-          echo "<div class='alert alert-success alert-dismissible'>
-                  <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                  Your Registration added successfully
-                </div>";
-          } 
-        if (isset($_GET['msg2']) == "update") {
-          echo "<div class='alert alert-success alert-dismissible'>
-                  <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                  Your Registration updated successfully
-                </div>";
-        }
-        if (isset($_GET['msg3']) == "delete") {
-          echo "<div class='alert alert-success alert-dismissible'>
-                  <button type='button' class='close' data-dismiss='alert'>&times;</button>
-                  Record deleted successfully
-                </div>";
-        }
-      ?>
-      <h2>View Records
-        <a href="add.php" class="btn btn-primary" style="float:right;">Add New Record</a>
-      </h2>
+      <h2>View To Do List</h2>
 
       <a href="trash.php">Trash Bins</a>
 
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>Status</th>
-            <th>Task</th>
-            <th>Description</th>
-            <th>created_At</th>
-          </tr>
-        </thead>
-        <tbody>
-            <?php 
-              $newTask = $taskObj->displayData(); 
-              foreach ($newTask as $task) {
-            ?>
-            <tr>
-              <td><input type="checkbox" id="packers" value="1"/></td>
-              <td><?php echo $task['task'] ?></td>
-              <td><?php echo $task['description'] ?></td>
-              <td><?php echo $task['created_at'] ?></td>
-              <td>
-                <a href="edit.php?editId=<?php echo $task['id'] ?>" style="color:green">
-                  <i class="fa fa-pencil" aria-hidden="true"></i></a>&nbsp
-                <a href="index.php?deleteId=<?php echo $task['id'] ?>" style="color:red" onclick="confirm('Are you sure want to delete this record')">
-                  <i class="fa fa-trash" aria-hidden="true"></i>
-                </a>
-              </td>
-            </tr>
-          <?php } ?>
-        </tbody>
-      </table>
+    
+        <?php 
+        $newTask = $taskObj->displayData(); 
+          foreach ($newTask as $task) {
+        ?>
+      <div class="card mb-4">
+        <h5 class="card-header"><?php echo $task['task'] ?></h5>
+        <div class="card-body">
+          <h5 class="card-title"><?php echo $task['description'] ?></h5>
+          <div class="row float-right pr-4">
+            <p class="card-text"><?php echo $task['created_at'] ?></p>&nbsp; &nbsp;
+            <span style="color:green" data-toggle="modal" data-target="#editModal" name="editId"><i class="fa fa-pencil" aria-hidden="true"></i></span>&nbsp
+            <a href="index.php?deleteId=<?php echo $task['id'] ?>" style="color:red"><i class="fa fa-trash" aria-hidden="true"></i></a>
+          </div>
+        </div>
+      </div>
+        <?php } ?>
+    </div>
+  </div>
+
+<!-- Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form action="" method="POST" class="p-4">
+          <div class="form-group">
+            <label for="task">Task:</label>
+            <input type="text" class="form-control" name="utask" value="<?php echo $newTask['task']; ?>" required="">
+          </div>
+          <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="text" class="form-control" name="udesc" value="<?php echo $newTask['description']; ?>" required="">
+          </div>
+          <div class="form-group">
+            <input type="hidden" name="id" value="<?php echo $newTask['id']; ?>">
+            <button type="submit" name="update" class="btn btn-primary" style="float:right;">Update</button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>
