@@ -76,16 +76,14 @@
         $newTask = $taskObj->displayData(); 
           foreach ($newTask as $task) {
         ?>
-      <div class="card mb-4">
-        <h5 class="card-header"><?php echo $task['task'] ?></h5>
-        <div class="card-body">
-          <h5 class="card-title"><?php echo $task['description'] ?></h5>
-          <div class="row float-right pr-4">
-            <p class="card-text"><?php echo $task['created_at'] ?></p>&nbsp; &nbsp;
+      <div class="container border border-primary mb-4 p-4 rounded">
+        <h5 class=""><?php echo $task['task'] ?></h5>
+        <h5 class=""><?php echo $task['description']?></h5>
+          <span class="row float-right bg-warning p-2">
+            <p class=""><?php echo $task['created_at']?></p>&nbsp; &nbsp;
             <span style="color:green" data-toggle="modal" data-target="#editModal" name="editId"><i class="fa fa-pencil" aria-hidden="true"></i></span>&nbsp
             <a href="index.php?deleteId=<?php echo $task['id'] ?>" style="color:red"><i class="fa fa-trash" aria-hidden="true"></i></a>
-          </div>
-        </div>
+          </span>
       </div>
         <?php } ?>
     </div>
