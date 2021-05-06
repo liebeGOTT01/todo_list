@@ -72,7 +72,7 @@
         <div class="container mb-4 p-4 glass-container">
         <div class="row ">
           <div class="col-md-1 p-3">
-            <input type="checkbox" id="done" class="w-100">
+            <input type="checkbox" class="done" class="w-100">
           </div>
           <div class="col-md-10 rounded">
             <h2 class="text-white"><?php echo $task['task']?></h2>
@@ -103,7 +103,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 <script>
-$('#done').on('change', function(){
+$('.done').on('change', function(){
   if (this.checked){
     $(this).parent().parent().css("text-decoration","line-through");
     $(this).parent().parent().css("color","red");
